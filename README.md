@@ -11,3 +11,4 @@
 This contains everything you need to run your app locally.
 
 View your app in  https://notebook-app-99953.web.app
+  https://github.com/Minhaz0100/NOTEBOOK/releases/download/v1.1.2/NOTE-BOOK10.apk
