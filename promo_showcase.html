@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOTE BOOK — অফিসিয়াল প্রমোশনাল ভিডিও ও ফিচার শোকেস</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;500;600;700&family=Atma:wght@500;600;700&family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-cream: #FAF6F0;
+      --card-bg: #FFFFFF;
+      --leather-dark: #3A2E27;
+      --leather-med: #524035;
+      --leather-light: #8C735D;
+      --terracotta: #C86D51;
+      --sage: #6B8E65;
+      --gold: #D4AF37;
+      --text-main: #2C241E;
+      --text-muted: #7A6F66;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', 'Anek Bangla', sans-serif;
+      line-height: 1.6;
+      padding: 24px;
+    }
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 2px dashed rgba(82, 64, 53, 0.2);
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: #EFE4D6;
+      color: var(--leather-med);
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: 38px;
+      color: var(--leather-dark);
+      font-family: 'Caveat', 'Atma', cursive;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+    
+    /* Native MP4 Video Player */
+    .video-container {
+      background: #1E1A17;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(44, 36, 30, 0.25);
+      border: 4px solid #3A2E27;
+      position: relative;
+      margin-bottom: 28px;
+    }
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: #000;
+    }
+    
+    .quick-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--leather-dark);
+      color: #FAF6F0;
+      padding: 12px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: background 0.15s;
+    }
+    .btn-cta:hover {
+      background: #1E1713;
+    }
+    .btn-secondary {
+      background: #EFE4D6;
+      color: var(--leather-dark);
+    }
+    .btn-secondary:hover {
+      background: #E3D3BF;
+    }
+    .btn-video {
+      background: var(--terracotta);
+      color: white;
+    }
+    .btn-video:hover {
+      background: #BA5D43;
+    }
+
+    /* Script & Voiceover Panel */
+    .script-section {
+      margin-top: 28px;
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid rgba(82, 64, 53, 0.15);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .script-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--leather-dark);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .timeline-item {
+      padding: 14px 18px;
+      border-left: 4px solid var(--terracotta);
+      background: #FDFBF7;
+      margin-bottom: 12px;
+      border-radius: 0 10px 10px 0;
+    }
+    .time-stamp {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--terracotta);
+      background: rgba(200, 109, 81, 0.12);
+      padding: 2px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+    .voice-bn {
+      font-size: 15px;
+      color: #382C24;
+      line-height: 1.5;
+    }
+    .voice-en {
+      font-size: 13.5px;
+      color: #72665E;
+      font-style: italic;
+      margin-top: 4px;
+    }
+    
+    /* Feature Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid rgba(82, 64, 53, 0.12);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      border-color: var(--leather-light);
+    }
+    .card-icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    .card-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--leather-dark);
+      margin-bottom: 6px;
+    }
+    .card-text {
+      font-size: 13.5px;
+      color: #5A4E46;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">NOTE BOOK 2.0 • OFFICIAL PROMOTIONAL VIDEO</span>
+      <h1>NOTE BOOK — Promotional Video &amp; Feature Showcase</h1>
+      <p class="subtitle">১০৮০p ফুল এইচডি ভিডিও, প্রতিটি ফিচারের বিশদ বিবরণ ও প্রচারণা স্ক্রিপ্ট</p>
+      
+      <div class="quick-links">
+        <a href="file:///c:/Users/minha/Downloads/NOTE%20BOOK/NOTE-BOOK-Promo.mp4" download class="btn-cta btn-video">
+          🎬 MP4 ভিডিও ডাউনলোড করুন (3.5 MB)
+        </a>
+        <a href="https://notebook-app-99953.firebaseapp.com" target="_blank" class="btn-cta">
+          🌐 লাইভ ওয়েব অ্যাপ
+        </a>
+        <a href="file:///c:/Users/minha/Downloads/NOTE%20BOOK/NOTE-BOOK.apk" download class="btn-cta btn-secondary">
+          📱 Android APK (11 MB)
+        </a>
+      </div>
+    </header>
+
+    <!-- Native Video Player -->
+    <div class="video-container">
+      <video controls poster="C:/Users/minha/.gemini/antigravity/brain/2b8b7efb-5f99-4e3c-8e03-bdda0236d1cf/promo_build/slide_01.png" preload="auto">
+        <source src="file:///c:/Users/minha/Downloads/NOTE%20BOOK/NOTE-BOOK-Promo.mp4" type="video/mp4" />
+        আপনার ব্রাউজার সরাসরি ভিডিও প্লে সমর্থন করে না। অনুগ্রহ করে উপরের ডাউনলোড বাটনে ক্লিক করে ফাইলটি চালান।
+      </video>
+    </div>
+
+    <!-- Script & Voiceover Section -->
+    <div class="script-section">
+      <h3 class="script-title">🎙️ সোশ্যাল মিডিয়ার জন্য ভিডিও টাইমলাইন ও স্ক্রিপ্ট</h3>
+      
+      <div class="timeline-item">
+        <span class="time-stamp">0:00 - 0:04 • ভূমিকা</span>
+        <p class="voice-bn"><strong>বাংলা:</strong> "কাগজ-কলমের আসল অনুভূতি চান? পরিচিত হোন NOTE BOOK-এর সাথে—আপনার ব্যক্তিগত ডিজিটাল স্টাডি রুম।"</p>
+        <p class="voice-en"><strong>English:</strong> "Love the tactile feel of physical pen and paper? Meet NOTE BOOK — your digital study sanctuary."</p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="time-stamp">0:04 - 0:08 • স্টাডি ডেস্ক</span>
+        <p class="voice-bn"><strong>বাংলা:</strong> "ওক ও আখরোট কাঠের টেবিল, পেছনে সাজানো বইয়ের তাক এবং গভীর মনোযোগের শান্ত পরিবেশ।"</p>
+        <p class="voice-en"><strong>English:</strong> "Realistic wooden desks, interactive bookshelf archives, and ambient study soundscapes."</p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="time-stamp">0:08 - 0:12 • ৩ডি পেজ টার্ন</span>
+        <p class="voice-bn"><strong>বাংলা:</strong> "আসল খাতার মতো নিখুঁত ৩ডি পেজ কার্ল এনিমেশন, কাগজের খসখস শব্দ এবং মোবাইল স্ক্রিনে মসৃণ সোয়াইপ।"</p>
+        <p class="voice-en"><strong>English:</strong> "Authentic 3D page curl physics, dynamic highlights, paper rustle acoustics, and swipe gestures."</p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="time-stamp">0:12 - 0:16 • ফাউন্টেন পেন</span>
+        <p class="voice-bn"><strong>বাংলা:</strong> "রুল্ড ও ডটেড মার্জিনে লিখুন ফাউন্টেন পেনের বিশেষ কালিতে—এসপ্রেসো, ইন্ডিগো, ভায়োলেট ও কারমাইন।"</p>
+        <p class="voice-en"><strong>English:</strong> "Write effortlessly across continuous ruled pages using rich fountain pen ink palettes."</p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="time-stamp">0:16 - 0:20 • বাংলা ও ইংরেজি ফন্ট</span>
+        <p class="voice-bn"><strong>বাংলা:</strong> "বাংলা হস্তলিপির জন্য আত্মা, গলদা ক্যালিগ্রাফি এবং ইংরেজিতে ক্যাভিয়েট ও কালাম ফন্ট।"</p>
+        <p class="voice-en"><strong>English:</strong> "Authentic cursive typography pairing English scripts with Bangla handwriting fonts."</p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="time-stamp">0:20 - 0:24 • স্টাইলাস ও ছবি</span>
+        <p class="voice-bn"><strong>বাংলা:</strong> "স্টাইলাস পেন দিয়ে আঁকুন স্কেচ, যুক্ত করুন নানা শেপ এবং ওয়াশি টেপ দিয়ে সাজিয়ে রাখুন পোলারয়েড ফটো।"</p>
+        <p class="voice-en"><strong>English:</strong> "Freehand stylus sketching, geometric shapes, and vintage polaroids taped to your pages."</p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="time-stamp">0:24 - 0:28 • রেডিয়াল মেনু</span>
+        <p class="voice-bn"><strong>বাংলা:</strong> "স্ক্রিনকে জটলামুক্ত রাখতে ৩-রিং বিশিষ্ট কনসেন্ট্রিক রেডিয়াল কম্পাস মেনু—একটি ছোঁয়ায় প্রস্ফুটিত হয়।"</p>
+        <p class="voice-en"><strong>English:</strong> "Clutter-free concentric radial menu that blooms with tools instantly upon touch."</p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="time-stamp">0:28 - 0:32 • বুকমার্ক ও ক্যালেন্ডার</span>
+        <p class="voice-bn"><strong>বাংলা:</strong> "রঙিন রেশমি ফিতা দিয়ে প্রিয় পাতা বুকমার্ক করুন এবং ক্যালেন্ডার থেকে যেকোনো দিনের ডায়েরি খুঁজে নিন সহজে।"</p>
+        <p class="voice-en"><strong>English:</strong> "Tag important thoughts with satin ribbon bookmarks and browse past entries with the calendar."</p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="time-stamp">0:32 - 0:36 • গুগল সাইন-ইন ও প্রাইভেসি</span>
+        <p class="voice-bn"><strong>বাংলা:</strong> "সব লেখা স্বয়ংক্রিয়ভাবে জিমেইল অ্যাকাউন্টে ক্লাউড সিঙ্ক থাকে। সাইন-আউট করলেই ডেটা শূন্য, পুনরায় লগইনে সব তথ্য ফেরত।"</p>
+        <p class="voice-en"><strong>English:</strong> "Strict account data isolation with cloud auto-sync and instant clean-room privacy wipes."</p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="time-stamp">0:36 - 0:40 • সমাপ্তি ও অ্যাকশন</span>
+        <p class="voice-bn"><strong>বাংলা:</strong> "আজই শুরু করুন আপনার লেখার নতুন যাত্রা। অ্যান্ড্রয়েডে নামিয়ে নিন NOTE BOOK APK অথবা ব্রাউজারে চালু করুন ওয়েব অ্যাপ!"</p>
+        <p class="voice-en"><strong>English:</strong> "Begin your mindful writing journey today. Download NOTE BOOK for Android or launch the web app!"</p>
+      </div>
+    </div>
+
+    <!-- Feature Grid -->
+    <h3 style="font-size: 22px; font-weight: 700; color: var(--leather-dark); margin-top: 36px;">📋 অ্যাপের সকল ফিচারের একনজরে তালিকা</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">🪑</div>
+        <h4 class="card-title">Study Sanctuary Desk</h4>
+        <p class="card-text">ওক ও আখরোট কাঠের টেবিল, ৩টি ডিসপ্লে ভিউ (টেবিল, বুকশেলফ ও বোথ) এবং শান্ত আলোর শেড।</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📖</div>
+        <h4 class="card-title">3D Page Curl Animation</h4>
+        <p class="card-text">বাস্তব খাতার পাতার মতো স্পাইন বাঁকিয়ে উল্টানো, রিফ্লেকশন হাইলাইট ও কাগজের খসখস শব্দ।</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">✒️</div>
+        <h4 class="card-title">Fountain Pen Inks</h4>
+        <p class="card-text">এসপ্রেসো, ইন্ডিগো ও ভায়োলেট কালি, রুল্ড ও ডটেড মার্জিন এবং ধারাবাহিক পৃষ্ঠার প্রবাহ।</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">✍️</div>
+        <h4 class="card-title">বাংলা হস্তলিপি ফন্টস</h4>
+        <p class="card-text">আত্মা (হস্তলিপি), গলদা (ক্যালিগ্রাফি), হিন্দ শিলিগুড়ি এবং ইংরেজি ক্যাভিয়েট ফন্টের সমন্বয়।</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <h4 class="card-title">Stylus &amp; Polaroid Photos</h4>
+        <p class="card-text">ফ্রিহ্যান্ড ড্রয়িং, জিওমেট্রিক শেপ এবং ওয়াশি টেপ দিয়ে আটকানো পোলারয়েড ফটো।</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧭</div>
+        <h4 class="card-title">Radial Compass Menu</h4>
+        <p class="card-text">৩-রিং বিশিষ্ট কনসেন্ট্রিক রেডিয়াল মেনু যা আপনার লেখার স্ক্রিনকে সবসময় পরিষ্কার রাখে।</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔖</div>
+        <h4 class="card-title">Ribbon Bookmarks</h4>
+        <p class="card-text">রঙিন সাটিন ফিতার বুকমার্ক এবং অতীতের যেকোনো তারিখের এন্ট্রি খুঁজে বের করার ক্যালেন্ডার।</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔐</div>
+        <h4 class="card-title">Google Data Isolation</h4>
+        <p class="card-text">জিমেইল ভিত্তিক অ্যাকাউন্ট সিস্টেম। সাইন-আউট করলেই ডেটা শূন্য, পুনরায় লগইনে মুহূর্তেই সব ব্যাকআপ ফেরত।</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <h4 class="card-title">Native Android APK</h4>
+        <p class="card-text">অ্যান্ড্রয়েড ফোনের জন্য তৈরি সম্পূর্ণ অপটিমাইজড ইনস্টলযোগ্য APK প্যাকেজ।</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

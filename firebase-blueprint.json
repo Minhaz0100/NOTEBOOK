@@ -1,0 +1,377 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User preferences for the 3D study room, desk, bookshelf, audio, motion, and default writing tools.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Owner Firebase Auth UID",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name",
+          "maxLength": 120
+        },
+        "tableStyle": {
+          "type": "string",
+          "description": "3D writing desk style",
+          "enum": ["oak", "walnut", "modern"],
+          "maxLength": 32
+        },
+        "bookshelfStyle": {
+          "type": "string",
+          "description": "3D archive bookshelf style",
+          "enum": ["classic", "dark", "minimal"],
+          "maxLength": 32
+        },
+        "theme": {
+          "type": "string",
+          "description": "Interface lighting theme",
+          "enum": ["warm-ivory", "soft-sage", "evening-study"],
+          "maxLength": 32
+        },
+        "soundEnabled": {
+          "type": "boolean",
+          "description": "Whether subtle paper and pen sound effects are enabled"
+        },
+        "soundVolume": {
+          "type": "number",
+          "description": "Audio volume from 0 to 1"
+        },
+        "animationMode": {
+          "type": "string",
+          "description": "Animation intensity preference",
+          "enum": ["full", "reduced", "none"],
+          "maxLength": 32
+        },
+        "defaultPenColor": {
+          "type": "string",
+          "description": "Default ink hex color",
+          "maxLength": 32
+        },
+        "defaultPageColor": {
+          "type": "string",
+          "description": "Default paper background color",
+          "maxLength": 32
+        },
+        "defaultFontFamily": {
+          "type": "string",
+          "description": "Default handwriting font family",
+          "maxLength": 64
+        },
+        "hasSeenRoomIntro": {
+          "type": "boolean",
+          "description": "Whether the user has completed the first-time study room introduction"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server update timestamp"
+        }
+      },
+      "required": [
+        "uid",
+        "displayName",
+        "tableStyle",
+        "bookshelfStyle",
+        "theme",
+        "soundEnabled",
+        "soundVolume",
+        "animationMode",
+        "defaultPenColor",
+        "defaultPageColor",
+        "defaultFontFamily",
+        "hasSeenRoomIntro",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Notebook": {
+      "title": "Notebook",
+      "description": "A physical 3D notebook on the writing desk or archived on the bookshelf.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Notebook document ID",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "ownerId": {
+          "type": "string",
+          "description": "Firebase Auth UID of the notebook owner",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title printed on the notebook cover and spine",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional subtitle or description on the cover",
+          "maxLength": 500
+        },
+        "notebookType": {
+          "type": "string",
+          "description": "Category of notebook",
+          "enum": ["daily", "free", "notes"],
+          "maxLength": 32
+        },
+        "journalYear": {
+          "type": "number",
+          "description": "Target year for Daily Journal notebooks (e.g., 2026, 2027)"
+        },
+        "coverColor": {
+          "type": "string",
+          "description": "Hex color of the notebook cover",
+          "maxLength": 32
+        },
+        "coverMaterial": {
+          "type": "string",
+          "description": "Surface material texture of the cover",
+          "enum": ["linen", "leather", "kraft", "buckram"],
+          "maxLength": 32
+        },
+        "coverAccent": {
+          "type": "string",
+          "description": "Minimalist motif printed on the cover",
+          "enum": ["botanical", "minimal-frame", "celestial", "monogram", "none"],
+          "maxLength": 32
+        },
+        "bindingStyle": {
+          "type": "string",
+          "description": "Physical 3D binding mechanism",
+          "enum": ["spiral", "stitched", "hardcover", "softcover"],
+          "maxLength": 32
+        },
+        "defaultPaperStyle": {
+          "type": "string",
+          "description": "Paper ruling pattern",
+          "enum": ["ruled", "dotted", "blank"],
+          "maxLength": 32
+        },
+        "defaultPageColor": {
+          "type": "string",
+          "description": "Paper tint hex code",
+          "maxLength": 32
+        },
+        "defaultFontFamily": {
+          "type": "string",
+          "description": "Default handwriting font for this notebook",
+          "maxLength": 64
+        },
+        "pageCount": {
+          "type": "number",
+          "description": "Total number of pages in this notebook"
+        },
+        "lastOpenedPage": {
+          "type": "number",
+          "description": "1-based index of the last opened page"
+        },
+        "lastViewedDate": {
+          "type": "string",
+          "description": "ISO date YYYY-MM-DD last viewed for Daily Journal notebooks",
+          "maxLength": 32
+        },
+        "archived": {
+          "type": "boolean",
+          "description": "True if placed on the archive bookshelf, false if on the active writing desk"
+        },
+        "deskPositionX": {
+          "type": "number",
+          "description": "X coordinate on the 3D writing table"
+        },
+        "deskPositionZ": {
+          "type": "number",
+          "description": "Z coordinate on the 3D writing table"
+        },
+        "deskRotationY": {
+          "type": "number",
+          "description": "Y-axis rotation angle on the 3D writing table"
+        },
+        "bookmarkIds": {
+          "type": "array",
+          "description": "Bounded list of bookmark ribbon identifiers (up to 30)"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server update timestamp"
+        }
+      },
+      "required": [
+        "id",
+        "ownerId",
+        "title",
+        "description",
+        "notebookType",
+        "journalYear",
+        "coverColor",
+        "coverMaterial",
+        "coverAccent",
+        "bindingStyle",
+        "defaultPaperStyle",
+        "defaultPageColor",
+        "defaultFontFamily",
+        "pageCount",
+        "lastOpenedPage",
+        "lastViewedDate",
+        "archived",
+        "deskPositionX",
+        "deskPositionZ",
+        "deskRotationY",
+        "bookmarkIds",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "NotebookPage": {
+      "title": "NotebookPage",
+      "description": "An individual page inside a notebook containing native lists of typed blocks, handwriting strokes, photographs, and bookmark ribbon metadata.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Page document ID",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "notebookId": {
+          "type": "string",
+          "description": "Parent notebook ID",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "ownerId": {
+          "type": "string",
+          "description": "Owner Firebase Auth UID",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "pageNumber": {
+          "type": "number",
+          "description": "1-based page number"
+        },
+        "entryDate": {
+          "type": "string",
+          "description": "ISO date YYYY-MM-DD for Daily Journal pages or empty string",
+          "maxLength": 32
+        },
+        "title": {
+          "type": "string",
+          "description": "Page heading or entry title",
+          "maxLength": 200
+        },
+        "paperStyle": {
+          "type": "string",
+          "description": "Paper ruling style for this page",
+          "enum": ["ruled", "dotted", "blank"],
+          "maxLength": 32
+        },
+        "pageColor": {
+          "type": "string",
+          "description": "Paper background color for this page",
+          "maxLength": 32
+        },
+        "bookmarkTitle": {
+          "type": "string",
+          "description": "Optional physical ribbon bookmark title attached to this page",
+          "maxLength": 120
+        },
+        "bookmarkColor": {
+          "type": "string",
+          "description": "Optional ribbon color hex if bookmarked, or empty string",
+          "maxLength": 32
+        },
+        "bookmarkStyle": {
+          "type": "string",
+          "description": "Ribbon weave style",
+          "enum": ["satin", "linen", "velvet", "none"],
+          "maxLength": 32
+        },
+        "textBlocks": {
+          "type": "array",
+          "description": "Bounded list of native map objects for typed handwriting text blocks (up to 100)"
+        },
+        "strokes": {
+          "type": "array",
+          "description": "Bounded list of native map objects for freehand stylus/pen strokes (up to 300)"
+        },
+        "photos": {
+          "type": "array",
+          "description": "Bounded list of native map objects for freeform polaroid photographs (up to 30)"
+        },
+        "wordCount": {
+          "type": "number",
+          "description": "Computed word count on this page"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server update timestamp"
+        }
+      },
+      "required": [
+        "id",
+        "notebookId",
+        "ownerId",
+        "pageNumber",
+        "entryDate",
+        "title",
+        "paperStyle",
+        "pageColor",
+        "bookmarkTitle",
+        "bookmarkColor",
+        "bookmarkStyle",
+        "textBlocks",
+        "strokes",
+        "photos",
+        "wordCount",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/UserProfile"
+      },
+      "description": "Stores isolated user profile and 3D study room customization preferences."
+    },
+    "/notebooks/{notebookId}": {
+      "schema": {
+        "$ref": "#/entities/Notebook"
+      },
+      "description": "Stores user notebooks, 3D cover designs, bindings, and desk/shelf positions."
+    },
+    "/notebooks/{notebookId}/pages/{pageId}": {
+      "schema": {
+        "$ref": "#/entities/NotebookPage"
+      },
+      "description": "Subcollection storing individual pages, bookmark ribbons, and native element lists."
+    }
+  }
+}

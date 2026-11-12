@@ -1,0 +1,8 @@
+{
+  "name": "NOTE BOOK",
+  "description": "A personal 3D study room and tactile digital journaling sanctuary with realistic physical notebooks, handwritten entries, stylus sketching, and freeform photography.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

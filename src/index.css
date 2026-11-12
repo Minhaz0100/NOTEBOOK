@@ -1,0 +1,205 @@
+@import "tailwindcss";
+
+:root {
+  /* Token System: Constrained 4pt Spacing Scale */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-12: 3rem;    /* 48px */
+  --space-16: 4rem;    /* 64px */
+
+  /* Constrained Radius Scale (3 distinct values) */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+
+  /* Constrained Elevation Scale (3 distinct shadow levels) */
+  --shadow-subtle: 0 2px 6px rgba(42, 33, 27, 0.07), 0 1px 2px rgba(42, 33, 27, 0.05);
+  --shadow-book: 0 14px 34px rgba(36, 27, 20, 0.16), 0 4px 10px rgba(36, 27, 20, 0.09);
+  --shadow-lifted: 0 24px 56px rgba(28, 20, 15, 0.26), 0 8px 20px rgba(28, 20, 15, 0.14);
+
+  /* OKLCH Perceptually Uniform Color Tokens (5 functional roles, no pure #000 or #fff) */
+  --surface-canvas: oklch(0.955 0.014 78);      /* Warm Ivory Study Backdrop (#F4EFE6) */
+  --surface-paper: oklch(0.974 0.011 82);       /* Cream Notebook Paper (#FAF6F0) */
+  --surface-wood: oklch(0.915 0.022 72);        /* Warm Sand / Desk Panel (#EAE0D2) */
+  --ink-primary: oklch(0.245 0.021 52);         /* Espresso Ink (#2C241E) */
+  --ink-secondary: oklch(0.465 0.024 56);       /* Warm Umber Muted (#6B5D52) */
+  --action-primary: oklch(0.365 0.036 48);      /* Walnut Binding Primary Action (#524035) */
+  --action-accent: oklch(0.545 0.068 148);      /* Botanical Sage Accent (#5D7A62) */
+  --action-destructive: oklch(0.485 0.125 26);  /* Carmine Wax Seal Destructive (#9C3D35) */
+
+  /* Typography Tokens */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-ui: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-hand-caveat: 'Caveat', 'Atma', 'Galada', 'Hind Siliguri', cursive, sans-serif;
+  --font-hand-kalam: 'Kalam', 'Atma', 'Hind Siliguri', cursive, sans-serif;
+  --font-hand-patrick: 'Patrick Hand', 'Atma', 'Hind Siliguri', cursive, sans-serif;
+  --font-hand-dancing: 'Dancing Script', 'Galada', 'Atma', cursive, sans-serif;
+  --font-hand-indie: 'Indie Flower', 'Atma', 'Hind Siliguri', cursive, sans-serif;
+
+  /* Bangla Handwriting & Script Typography Tokens */
+  --font-bangla-atma: 'Atma', cursive, sans-serif;
+  --font-bangla-galada: 'Galada', cursive, sans-serif;
+  --font-bangla-siliguri: 'Hind Siliguri', sans-serif;
+  --font-bangla-anek: 'Anek Bangla', sans-serif;
+  --font-bangla-serif: 'Noto Serif Bengali', serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--surface-canvas);
+  color: var(--ink-primary);
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+/* Accessible Focus Ring on all interactive elements */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--action-primary);
+  outline-offset: 2px;
+}
+
+/* Ruled, Dotted, and Blank Notebook Paper Surfaces */
+.paper-ruled {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 31px,
+    rgba(138, 118, 98, 0.22) 31px,
+    rgba(138, 118, 98, 0.22) 32px
+  );
+  background-position: 0 12px;
+}
+
+.paper-dotted {
+  background-image: radial-gradient(rgba(130, 110, 92, 0.34) 1.25px, transparent 1.25px);
+  background-size: 24px 24px;
+}
+
+.paper-blank {
+  background-image: none;
+}
+
+@keyframes radialBloom {
+  from {
+    opacity: 0;
+    transform: translate(0px, 0px) scale(0.35);
+  }
+  to {
+    opacity: 1;
+    transform: translate(var(--rx, 0px), var(--ry, 0px)) scale(1);
+  }
+}
+
+.radial-item-bloom {
+  animation: radialBloom 180ms cubic-bezier(0.2, 0.9, 0.25, 1) forwards;
+}
+
+/* Realistic 3D Book Page Curl & Turn Animations */
+@keyframes bookFlipNext {
+  0% {
+    transform: perspective(2000px) rotateY(0deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+  25% {
+    transform: perspective(2000px) rotateY(-40deg) rotateZ(-1.5deg) translateZ(28px);
+    box-shadow: -14px 14px 30px rgba(35, 25, 18, 0.35);
+  }
+  60% {
+    transform: perspective(2000px) rotateY(-115deg) rotateZ(-1deg) translateZ(35px);
+    box-shadow: -18px 16px 36px rgba(35, 25, 18, 0.3);
+  }
+  100% {
+    transform: perspective(2000px) rotateY(-180deg) translateZ(0px);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes bookFlipPrev {
+  0% {
+    transform: perspective(2000px) rotateY(-180deg) translateZ(0px);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  40% {
+    transform: perspective(2000px) rotateY(-115deg) rotateZ(-1deg) translateZ(35px);
+    box-shadow: -18px 16px 36px rgba(35, 25, 18, 0.3);
+  }
+  75% {
+    transform: perspective(2000px) rotateY(-40deg) rotateZ(-1.5deg) translateZ(28px);
+    box-shadow: -14px 14px 30px rgba(35, 25, 18, 0.35);
+  }
+  100% {
+    transform: perspective(2000px) rotateY(0deg) translateZ(0px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+}
+
+@keyframes bookShadowCast {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.2);
+  }
+  35% {
+    opacity: 0.55;
+    transform: scaleX(1);
+  }
+  70% {
+    opacity: 0.28;
+    transform: scaleX(0.6);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(0.1);
+  }
+}
+
+.animate-page-flip-next {
+  animation: bookFlipNext 480ms cubic-bezier(0.25, 0.85, 0.3, 1) forwards;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
+}
+
+.animate-page-flip-prev {
+  animation: bookFlipPrev 480ms cubic-bezier(0.25, 0.85, 0.3, 1) forwards;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
+}
+
+.animate-shadow-cast {
+  animation: bookShadowCast 480ms cubic-bezier(0.25, 0.85, 0.3, 1) forwards;
+  transform-origin: left center;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

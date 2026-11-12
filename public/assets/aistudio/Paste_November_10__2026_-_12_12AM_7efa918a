@@ -1,0 +1,1458 @@
+# DAYBOOK
+## Complete Master Prompt – Production-Ready 3D Digital Personal Journaling Web Application
+
+### PROJECT OVERVIEW
+
+Build a complete, production-ready web application called **Daybook**.
+
+Daybook is a personal digital journaling application that recreates the experience of owning, organizing, and writing in real physical notebooks.
+
+The central concept is to create a realistic digital personal study room where users can interact with physical-looking notebooks, a writing desk, a bookshelf, pens, erasers, photographs, bookmarks, and individual notebook pages.
+
+Imagine a user entering their own peaceful study room.
+
+There is a beautiful wooden table containing their active notebooks and a bookshelf containing their archived notebooks. They select a notebook, pick it up, open it, turn its pages, select a pen from a physical-looking pen box, write their thoughts, draw using a stylus, attach photographs, add bookmarks, and close the notebook when they finish.
+
+The application should recreate this entire experience digitally.
+
+**This is a WEB APPLICATION.** It must run in a browser and work across desktop computers, laptops, tablets, and mobile devices.
+
+It is not a desktop-only application, a mobile-only application, or a static website.
+
+Build the actual final product with working functionality, authentication, persistent cloud storage, realistic interactions, and a complete user experience.
+
+Do not create a generic SaaS dashboard, productivity application, conventional note-taking website, or AI-generated website template.
+
+The defining concept is:
+
+**A personal digital study room containing realistic physical notebooks that users can pick up, open, write in, personalize, bookmark, organize, and archive.**
+
+---
+
+# PART 1 — DESIGN PHILOSOPHY AND VISUAL DIRECTION
+
+## 1.1 Overall Design Philosophy
+
+The entire application should feel like a beautifully designed physical study environment.
+
+Prioritize realism, simplicity, warmth, and natural interactions.
+
+The visual direction should include:
+
+- Realistic 3D environments and objects.
+- Natural wooden materials.
+- Beautiful paper textures.
+- Realistic book covers and page edges.
+- Physical-looking notebook bindings.
+- Fabric bookmarks.
+- Realistic pens and erasers.
+- Warm environmental lighting.
+- Natural shadows and reflections.
+- Elegant typography.
+- Beautiful handwriting-style fonts.
+- Subtle physical interaction animations.
+
+The interface should feel personal, peaceful, familiar, and timeless.
+
+Avoid:
+
+- Generic AI-generated SaaS aesthetics.
+- Conventional dashboard layouts.
+- Excessive gradients.
+- Glowing interface elements.
+- Unnecessary glassmorphism.
+- Excessive rounded cards.
+- Cartoonish 3D illustrations.
+- Complicated navigation.
+- Excessive toolbars.
+- Unnecessary productivity features.
+- Decorative elements that interfere with writing.
+
+Use the supplied visual reference image as the primary inspiration for the notebook's appearance, handwriting, paper texture, and overall visual identity.
+
+The 3D environment should complement the notebook rather than overpower it.
+
+## 1.2 Color Palette
+
+Use a sophisticated, warm, natural color palette.
+
+Suggested colors:
+
+- Warm ivory.
+- Cream.
+- Off-white.
+- Natural oak.
+- Walnut brown.
+- Dark wood.
+- Muted beige.
+- Soft sage.
+- Dusty rose.
+- Muted blue.
+- Warm grey.
+
+Users should be able to customize the appearance of their environment and notebooks.
+
+## 1.3 Typography
+
+Use beautiful, natural handwriting-style fonts for the writing experience.
+
+Provide multiple handwriting font choices.
+
+The fonts must remain readable for longer journal entries.
+
+Use a separate, clean, elegant font for interface elements, navigation, settings, and labels.
+
+Do not use handwriting fonts for every interface element.
+
+Preserve the feeling of a real handwritten journal without sacrificing readability.
+
+---
+
+# PART 2 — THE 3D STUDY ROOM
+
+## 2.1 Main Environment
+
+Create a beautiful, interactive 3D study room.
+
+The room must contain two primary interactive objects:
+
+1. A writing table.
+2. A bookshelf.
+
+Both objects must be recognizable as physical furniture and should be rendered with realistic proportions, materials, lighting, and shadows.
+
+The user should be able to interact directly with these objects.
+
+The room should feel like a personal study space rather than a game environment.
+
+Do not add unnecessary characters, animated people, or distracting environmental objects.
+
+## 2.2 First-Time User Experience
+
+After signing in for the first time, introduce the user to their personal study room.
+
+Show the room with its table and bookshelf.
+
+The user should be able to:
+
+- Click the table to view active notebooks.
+- Click the bookshelf to view archived notebooks.
+- Explore the room.
+- Customize the furniture and environment.
+- Create their first notebook.
+
+Provide a simple introduction to the room without forcing users through a lengthy tutorial.
+
+## 2.3 Regular User Experience
+
+After the initial setup, the application must open directly into the **writing table view**.
+
+Do not make users enter the full room and select the table every time.
+
+The table should be the default home screen.
+
+Users should immediately see their active notebooks and be able to select one.
+
+Provide an easily accessible way to navigate to the bookshelf and return to the full room when desired.
+
+## 2.4 Room Customization
+
+Provide approximately 2–3 visually distinct options for each furniture category.
+
+### Table styles
+
+- Natural wooden writing desk.
+- Dark polished wooden desk.
+- Minimal elegant modern writing table.
+
+### Bookshelf styles
+
+- Classic wooden bookshelf.
+- Dark traditional bookshelf.
+- Minimal elegant bookshelf.
+
+Each style must have its own realistic materials, appearance, and proportions.
+
+Allow users to preview and select furniture styles.
+
+Save their selections to their account.
+
+Changing the table should not unexpectedly change the bookshelf or other application preferences.
+
+---
+
+# PART 3 — THE WRITING TABLE AND ACTIVE NOTEBOOKS
+
+## 3.1 Physical Notebook Arrangement
+
+The writing table displays the user's active notebooks.
+
+Notebooks must look like actual physical books placed on a desk.
+
+Do not use ordinary digital cards, rectangular containers, or conventional file-list layouts as the primary notebook selection interface.
+
+Each notebook should have:
+
+- A realistic 3D cover.
+- A visible title.
+- A distinct color.
+- Realistic page edges.
+- A thickness corresponding to its page count.
+- Its own binding style.
+- Appropriate shadows and perspective.
+
+## 3.2 Intelligent Notebook Arrangement
+
+Automatically arrange notebooks naturally on the table.
+
+The arrangement should behave like a real collection of books.
+
+Requirements:
+
+- Maintain realistic spacing.
+- Prevent accidental overlapping.
+- Keep notebook covers and titles visible.
+- Support notebooks with different sizes and thicknesses.
+- Adapt to the available table space.
+- Allow users to reposition notebooks where practical.
+- Preserve their preferred arrangement between sessions.
+
+When the number of notebooks increases, intelligently organize the collection.
+
+Do not shrink all notebooks excessively just to fit the screen.
+
+Use natural organization, additional browsing space, or smooth navigation when necessary.
+
+The table should always feel like an organized personal writing desk.
+
+## 3.3 Notebook Selection Animation
+
+When the user selects a notebook:
+
+1. The selected notebook should respond naturally.
+2. It should lift slightly from the table.
+3. It should move toward the viewing position.
+4. Its cover should open.
+5. The open notebook should transition into the writing interface.
+
+Make the animation realistic and fluid.
+
+Include appropriate shadows, depth, book movement, and cover articulation.
+
+The animation should feel like physically picking up and opening a real notebook.
+
+Avoid unnecessarily long or theatrical transitions.
+
+---
+
+# PART 4 — THE BOOKSHELF AND ARCHIVED NOTEBOOKS
+
+## 4.1 Physical Bookshelf Experience
+
+Create a separate interactive 3D bookshelf.
+
+When users click the bookshelf, transition to a bookshelf view.
+
+Archived notebooks should be arranged like real physical books standing vertically on shelves.
+
+This is a critical visual requirement.
+
+Books must:
+
+- Stand next to each other.
+- Have visible spines.
+- Display their titles on their spines.
+- Have realistic thickness and proportions.
+- Have distinguishable cover colors.
+- Be arranged naturally on the shelves.
+
+Do not display archived notebooks as digital cards.
+
+They must look like actual books stored on a physical bookshelf.
+
+## 4.2 Bookshelf Interactions
+
+Users should be able to:
+
+- Browse archived notebooks.
+- Select a book.
+- Pull a book out of the shelf.
+- Open and read it.
+- Restore it to the writing table.
+- Permanently delete it after confirmation.
+
+Provide realistic book-selection and opening animations.
+
+## 4.3 Archiving Behavior
+
+When a user archives a notebook:
+
+- Remove it from the active table.
+- Preserve all notebook content.
+- Move it into the archive collection.
+- Display it on the bookshelf.
+
+Archiving must never delete content.
+
+Restoring a notebook should return it to the active table with its previous appearance and arrangement information where possible.
+
+---
+
+# PART 5 — NOTEBOOK CREATION AND NOTEBOOK TYPES
+
+## 5.1 Creating a Notebook
+
+Allow users to create multiple independent notebooks.
+
+Each notebook must have its own:
+
+- Pages.
+- Content.
+- Photographs.
+- Handwriting.
+- Drawings.
+- Bookmarks.
+- Cover design.
+- Binding style.
+- Writing preferences.
+- Page appearance.
+- Last opened position.
+
+When creating a notebook, provide a simple setup process.
+
+Allow users to choose:
+
+1. Notebook title.
+2. Notebook type.
+3. Cover color or design.
+4. Binding style.
+5. Optional description.
+
+Do not turn notebook creation into a complicated configuration process.
+
+## 5.2 Notebook Types
+
+Provide three primary notebook types.
+
+### A. Daily Journal
+
+A date-based journal for recording everyday experiences.
+
+Features:
+
+- Choose a year, such as 2027.
+- Calendar view.
+- Navigate between months and years.
+- Select a specific date.
+- Create or open an entry for that date.
+- Visually distinguish dates that contain entries.
+- Navigate between previous and upcoming dates.
+- Revisit older entries.
+- Preserve each entry under its actual date.
+
+The calendar should feel like a personal journal index, not a scheduling application.
+
+Users should be able to create one journal notebook for a particular year and browse all its entries through the calendar.
+
+Support multiple daily journal notebooks if the user wants them.
+
+### B. Free Writing Notebook
+
+A traditional notebook with unrestricted blank pages.
+
+Features:
+
+- No required dates.
+- Unlimited pages.
+- Freeform writing.
+- Freehand drawing.
+- Photographs.
+- Personal annotations.
+- Natural page navigation.
+
+### C. Personal Notes Notebook
+
+A separate notebook for:
+
+- Ideas.
+- Thoughts.
+- Personal notes.
+- Random writing.
+- Creative work.
+- Miscellaneous information.
+
+Users can create as many separate notebooks as they need.
+
+Do not force users into a complicated organizational system.
+
+---
+
+# PART 6 — PHYSICAL NOTEBOOK DESIGN AND BINDING
+
+## 6.1 Notebook Appearance
+
+Every notebook should look and behave like a real physical book.
+
+Include:
+
+- Realistic front and back covers.
+- Paper edges.
+- Notebook thickness.
+- Binding details.
+- Page shadows.
+- Realistic cover materials.
+- Appropriate proportions.
+
+## 6.2 Binding Options
+
+Allow users to select different binding styles.
+
+Include:
+
+1. Spiral-bound or ring-bound notebook.
+2. Traditional stitched notebook.
+3. Hardcover notebook.
+4. Softcover notebook.
+
+The selected binding style must visibly affect the 3D notebook model.
+
+For example:
+
+- Spiral notebooks should show realistic metal rings.
+- Hardcover notebooks should have thicker covers.
+- Stitched notebooks should have visible binding details.
+- Softcover notebooks should have flexible-looking covers.
+
+Allow users to change the binding style from individual notebook settings.
+
+## 6.3 Cover Customization
+
+Allow users to customize:
+
+- Cover color.
+- Cover material.
+- Cover texture.
+- Notebook title.
+- Simple decorative elements.
+- Minimal cover designs.
+
+Provide several tasteful options.
+
+Each notebook should have its own identity.
+
+---
+
+# PART 7 — THE NOTEBOOK WRITING EXPERIENCE
+
+## 7.1 Open Notebook Interface
+
+This is the most important part of Daybook.
+
+When a notebook opens, display a beautiful, realistic open notebook occupying most of the available screen.
+
+The paper should be the primary focus.
+
+Include:
+
+- Natural paper texture.
+- Subtle paper shadows.
+- Notebook binding.
+- Realistic page edges.
+- Optional ruled paper.
+- Optional dotted paper.
+- Optional blank paper.
+- Page number displayed at the TOP.
+- Smooth page navigation.
+- Realistic page-turning animation.
+
+Keep the interface around the notebook minimal.
+
+The user should focus on writing rather than navigating menus.
+
+## 7.2 Page Navigation
+
+Users should be able to:
+
+- Turn to the next page.
+- Turn to the previous page.
+- Add pages.
+- Delete pages.
+- Navigate to a specific page.
+- Browse the notebook naturally.
+
+Support:
+
+- Mouse interactions.
+- Touch gestures.
+- Keyboard navigation where appropriate.
+
+## 7.3 Dynamic Notebook Growth
+
+There should be no arbitrary fixed notebook length.
+
+As users add pages:
+
+- Increase the page count.
+- Update the notebook's visible thickness.
+- Preserve existing content.
+- Maintain appropriate page navigation.
+
+The book should visually grow as its contents grow.
+
+The notebook must not remain visually identical regardless of how many pages it contains.
+
+## 7.4 Page Content Persistence
+
+Every page must preserve its individual content and layout.
+
+Save the exact position, size, rotation, color, font, and layering of individual elements.
+
+Reopening a notebook must restore the same page composition.
+
+---
+
+# PART 8 — LAST OPENED PAGE AND POSITION MEMORY
+
+Implement automatic position memory for every notebook.
+
+When users close a notebook or leave the application:
+
+- Save the last opened page.
+- Remember the user's position within the notebook.
+- Save the last viewed date for Daily Journal notebooks.
+- Preserve relevant notebook-specific writing preferences.
+- Save the current editing state safely.
+
+When users reopen the notebook, automatically return to where they stopped.
+
+For Daily Journal notebooks, restore the last viewed journal date and corresponding entry.
+
+Synchronize this information across devices.
+
+If the user switches devices, prioritize the latest successfully synchronized state and avoid overwriting newer content with older data.
+
+The user should never have to search for where they stopped writing.
+
+---
+
+# PART 9 — REALISTIC 3D PEN BOX AND WRITING INSTRUMENTS
+
+## 9.1 Physical Pen Box
+
+Create a beautiful, realistic 3D pen box or pen holder near the open notebook.
+
+The pen collection should feel like physical writing equipment.
+
+Instead of making the primary experience a conventional toolbar with colored circles, display realistic individual writing instruments.
+
+When users open the pen box, show the available pens.
+
+Allow users to pick a pen and start writing.
+
+## 9.2 Pen Types
+
+Include:
+
+- Ballpoint pen.
+- Fountain pen.
+- Gel pen.
+- Fine-tip pen.
+- Marker.
+- Pencil.
+
+Each pen should have its own realistic 3D appearance.
+
+Provide multiple color options:
+
+- Black.
+- Blue.
+- Red.
+- Green.
+- Purple.
+- Pink.
+- Additional custom colors.
+
+## 9.3 Pen Selection and Customization
+
+Users should be able to:
+
+- Select different pens.
+- Change pen colors.
+- Adjust stroke thickness.
+- Adjust opacity where appropriate.
+- Switch between writing instruments.
+- Preserve previously written strokes.
+
+Different pen types should produce appropriately different stroke appearances.
+
+For example, a fountain pen should have a different visual character from a pencil or marker.
+
+Changing the selected pen must never change previously written content.
+
+## 9.4 Multiple Pen Colors
+
+Users must be able to use multiple colors on the same page.
+
+Do not assign one permanent color to the entire page.
+
+Every stroke and text element should preserve its individual color and style.
+
+Make switching pens quick and intuitive.
+
+---
+
+# PART 10 — ERASERS AND WRITING TOOLS
+
+Include realistic erasers alongside the pen collection.
+
+Users should be able to select an eraser and remove handwriting naturally.
+
+Support:
+
+- Erasing individual strokes.
+- Erasing portions of drawings.
+- Undo.
+- Redo.
+- Clear selection.
+- Basic drawing tools.
+
+Do not accidentally erase photographs or typed text when the user is erasing handwriting.
+
+Provide a reliable undo and redo history for editing operations.
+
+Make the eraser feel like a physical writing tool rather than just a digital delete button.
+
+---
+
+# PART 11 — FREEHAND HANDWRITING AND STYLUS SUPPORT
+
+The application must support natural handwriting with a stylus or digital pen.
+
+Users should be able to write directly anywhere on the notebook page without selecting a text field first.
+
+Support:
+
+- Freehand handwriting.
+- Natural pen strokes.
+- Drawing.
+- Doodling.
+- Underlining.
+- Circling.
+- Handwritten annotations.
+- Different pen colors.
+- Different stroke widths.
+- Pressure sensitivity where supported.
+- Appropriate palm rejection where supported by the device.
+
+Prioritize tablet and stylus users.
+
+The application should feel like writing directly on physical paper.
+
+Support mixed content on the same page:
+
+- Typed text.
+- Handwriting.
+- Drawings.
+- Photographs.
+- Decorative elements.
+
+Ensure stylus input is responsive and does not interfere with ordinary touch gestures.
+
+---
+
+# PART 12 — HANDWRITING-STYLE TYPED TEXT
+
+For users writing with a keyboard, provide beautiful handwriting-style fonts.
+
+Include several readable handwriting fonts.
+
+Allow users to change:
+
+- Font family.
+- Font size.
+- Individual text color.
+- Text alignment.
+- Basic formatting.
+- Underlining.
+- Text positioning.
+
+Do not assign one permanent font color to the entire page.
+
+Users should be able to write different paragraphs or individual text elements in different colors.
+
+Keep the writing experience natural and distraction-free.
+
+---
+
+# PART 13 — PHOTOGRAPHS AND FREEFORM IMAGE PLACEMENT
+
+Photographs should behave like actual printed pictures placed inside a physical notebook.
+
+Allow users to:
+
+- Upload photographs from their device.
+- Drag and drop photographs directly onto a page.
+- Move images freely anywhere.
+- Resize using their corners.
+- Rotate freely by grabbing and dragging an intuitive corner rotation handle.
+- Overlap multiple photographs.
+- Change their stacking order.
+- Position images beside or between written content.
+- Add multiple photographs to one page.
+
+Do not require users to open a positioning menu or click a dedicated rotation button.
+
+The interaction should be direct:
+
+- Drag the photograph to move it.
+- Grab its corners to resize it.
+- Use an intuitive corner gesture to rotate it.
+- Position it anywhere on the page.
+
+Make photographs look like physical prints.
+
+Optional visual details:
+
+- White photo borders.
+- Subtle shadows.
+- Tape decorations.
+- Slight natural rotations.
+
+Preserve the exact position, dimensions, rotation, and layering of every photograph when saving and reopening a page.
+
+Provide appropriate selection handles without leaving them permanently visible.
+
+---
+
+# PART 14 — BEAUTIFUL PHYSICAL BOOKMARK SYSTEM
+
+Create an elegant bookmark experience that feels like using actual physical bookmarks.
+
+Bookmarks should be a major part of the notebook experience.
+
+## 14.1 Physical Bookmark Ribbons
+
+Display colored fabric ribbons extending from the top or side edges of the notebook.
+
+Allow users to:
+
+- Add multiple bookmarks.
+- Choose different ribbon colors.
+- Select ribbon styles.
+- Rename bookmarks.
+- Remove bookmarks.
+- Jump to bookmarked pages.
+
+When a user bookmarks a page, a ribbon should visually appear at the corresponding page position.
+
+The bookmarks should remain visually attached to their pages.
+
+When turning pages, their positions must remain accurate.
+
+## 14.2 Bookmark Index
+
+Provide a dedicated, easily accessible bookmark navigation feature.
+
+When opened, display a beautiful bookmark index containing:
+
+- Bookmark title.
+- Page number.
+- Ribbon color.
+- Optional page preview.
+
+Clicking an item should navigate directly to the bookmarked page using a smooth page-turning transition.
+
+Allow users to rename, recolor, and remove bookmarks.
+
+The bookmark index should feel like browsing physical bookmarks in a notebook, not searching through a complicated digital menu.
+
+## 14.3 Bookmark Accessibility
+
+Make bookmarks easy to find without navigating through multiple settings or menus.
+
+Use visible bookmark ribbons and a simple bookmark index.
+
+Do not hide this important functionality behind an obscure interface.
+
+---
+
+# PART 15 — PAGE-TURNING ANIMATIONS AND NATURAL SOUNDS
+
+## 15.1 Realistic Page Animations
+
+Implement smooth, realistic page-turning animations.
+
+Include:
+
+- Natural page bending.
+- Page curling.
+- Realistic page movement.
+- Subtle paper shadows.
+- Appropriate depth.
+- Smooth transitions between pages.
+
+The interaction should resemble turning an actual notebook page.
+
+Support mouse, touch, and other appropriate navigation methods.
+
+## 15.2 Natural Sound Effects
+
+Use subtle physical sounds where appropriate.
+
+Examples:
+
+- Opening a notebook.
+- Closing a notebook.
+- Placing a notebook on a table.
+- Turning a page.
+- Selecting a pen.
+- Placing a photograph.
+- Using an eraser.
+
+Sounds must be subtle and optional.
+
+Provide:
+- Sound on/off.
+- Volume adjustment.
+
+Do not play sounds automatically in situations where browser policies or user preferences prevent it.
+
+Avoid repetitive or irritating effects.
+
+## 15.3 Animation Preferences
+
+Provide:
+
+- Full animations.
+- Reduced animations.
+- Reduced-motion accessibility mode.
+
+Animations should feel premium but should never interfere with writing performance.
+
+---
+
+# PART 16 — PAGE FOOTER, WORD COUNT AND SUMMARIES
+
+Keep a subtle footer at the bottom of the notebook page.
+
+Include:
+
+- Current page word count.
+- Total notebook word count.
+- Notebook summary option.
+- Optional writing statistics.
+
+## 16.1 Notebook Summary
+
+Allow users to generate a summary of:
+
+- The current page.
+- Selected pages.
+- The entire notebook.
+
+The summary should help users revisit and understand their previous writing.
+
+Keep this functionality secondary.
+
+Do not interrupt the user while writing.
+
+For handwritten content, only include it in summaries when handwriting recognition is available and the user permits its use.
+
+---
+
+# PART 17 — SEPARATE NOTEBOOK AND APPLICATION SETTINGS
+
+Do not mix every customization into one large settings page.
+
+Provide two distinct settings areas.
+
+## 17.1 Individual Notebook Settings
+
+These settings apply only to the currently selected notebook.
+
+Include:
+
+- Notebook title.
+- Cover design.
+- Cover color.
+- Cover material.
+- Binding style.
+- Default paper style.
+- Default writing font.
+- Notebook-specific preferences.
+- Notebook archiving.
+
+Changing one notebook's settings must not unexpectedly affect other notebooks.
+
+## 17.2 Overall Application Settings
+
+These settings apply to the entire Daybook application.
+
+Include:
+
+- Room appearance.
+- Table style.
+- Bookshelf style.
+- General interface theme.
+- Sound settings.
+- Animation preferences.
+- Account settings.
+- Cloud synchronization.
+- Default application preferences.
+
+Keep both settings areas simple and visually consistent with the overall design.
+
+---
+
+# PART 18 — GOOGLE AUTHENTICATION AND CLOUD SYNCHRONIZATION
+
+Users must be able to access their notebooks from anywhere.
+
+Implement real Google account authentication.
+
+Support:
+
+- Google sign-in.
+- Secure sign-out.
+- Persistent sessions.
+- Account-specific data.
+- Cloud storage.
+- Automatic synchronization.
+- Image storage.
+- Cross-device access.
+
+## 18.1 Automatic Saving
+
+Users should not need to manually save their work every time they write.
+
+Automatically save:
+
+- Typed text.
+- Handwriting strokes.
+- Drawings.
+- Photographs.
+- Image positioning.
+- Page layouts.
+- Bookmarks.
+- Notebook settings.
+- Application settings.
+- Last opened page.
+- Notebook arrangement.
+
+Show a discreet saving or synchronization indicator.
+
+Clearly distinguish saving, saved, and synchronization error states.
+
+Avoid excessive network requests for every individual stroke.
+
+Use efficient batching, debouncing, and safe persistence strategies.
+
+## 18.2 Offline Support
+
+Where practical, support offline editing.
+
+If the user temporarily loses connectivity:
+
+- Preserve local changes.
+- Allow writing to continue.
+- Queue changes safely.
+- Synchronize when connectivity returns.
+- Handle conflicting changes carefully.
+
+Never silently discard unsynchronized journal content.
+
+## 18.3 Security and Privacy
+
+Every user's data must remain private.
+
+Implement:
+
+- Secure authentication.
+- Proper authorization.
+- Account-level data isolation.
+- Secure image storage.
+- Appropriate database access policies.
+- Safe session handling.
+
+One user must never be able to access another user's private journals.
+
+---
+
+# PART 19 — RESPONSIVE WEB APPLICATION
+
+Daybook must work beautifully across:
+
+- Desktop computers.
+- Windows laptops.
+- Tablets.
+- iPads.
+- Mobile phones.
+
+Do not simply shrink the desktop layout to fit smaller screens.
+
+Adapt the experience intelligently.
+
+## Desktop
+
+Prioritize:
+
+- Full 3D room.
+- Physical desk and bookshelf.
+- Realistic notebook selection.
+- Open-book writing experience.
+- Freeform photograph manipulation.
+
+## Tablets
+
+Prioritize:
+
+- Stylus writing.
+- Freehand drawing.
+- Touch gestures.
+- Natural page navigation.
+- Responsive notebook proportions.
+
+## Mobile
+
+Provide:
+
+- Single-page notebook reading and writing.
+- Easy page navigation.
+- Photograph placement.
+- Calendar access.
+- Bookmark navigation.
+- Simple notebook selection.
+
+The mobile version should retain the notebook's visual identity while adapting interactions to the smaller screen.
+
+Preserve all content and layout data across devices.
+
+---
+
+# PART 20 — TECHNICAL ARCHITECTURE
+
+Choose a modern, reliable, maintainable web technology stack.
+
+The architecture should support interactive 3D scenes, complex notebook pages, stylus input, persistent data, and cloud synchronization.
+
+Suggested technologies include:
+
+### Frontend
+
+- React.
+- Next.js.
+- TypeScript.
+- Responsive CSS architecture.
+
+### 3D Environment
+
+- Three.js.
+- React Three Fiber.
+- Appropriate animation and interaction libraries.
+
+Use 3D rendering for:
+
+- Study room.
+- Table.
+- Bookshelf.
+- Physical notebook models.
+- Covers and bindings.
+- Pen box.
+- Individual pens.
+- Erasers.
+- Environmental lighting and shadows.
+
+### Writing Surface
+
+Use a dedicated, optimized interactive canvas architecture for:
+
+- Typed text.
+- Freehand handwriting.
+- Stylus input.
+- Drawings.
+- Photographs.
+- Object positioning.
+- Rotation.
+- Layering.
+- Page composition.
+
+The writing surface should preserve individual elements as independent objects.
+
+Do not flatten an entire page into a single image.
+
+### Backend and Storage
+
+Use a suitable backend with:
+
+- Authentication.
+- Relational database.
+- Cloud image storage.
+- Secure authorization.
+- Persistent user preferences.
+- Synchronization support.
+
+Supabase or an equivalent reliable backend is acceptable.
+
+Choose the actual technology based on project requirements.
+
+### Suggested Data Structure
+
+Design a scalable data model for:
+
+- Users.
+- User profiles.
+- Application preferences.
+- Room customization.
+- Notebooks.
+- Notebook types.
+- Notebook covers.
+- Notebook bindings.
+- Pages.
+- Page elements.
+- Typed text.
+- Handwriting strokes.
+- Drawings.
+- Photographs.
+- Bookmarks.
+- Archived notebooks.
+- Notebook arrangements.
+- Last opened positions.
+- Synchronization metadata.
+
+Each page element should retain its own properties, including:
+
+- Element type.
+- Position.
+- Size.
+- Rotation.
+- Color.
+- Layer order.
+- Content.
+- Associated page.
+- Creation and modification timestamps.
+
+Use a suitable architecture for efficient storage and retrieval.
+
+---
+
+# PART 21 — PERFORMANCE AND OPTIMIZATION
+
+The application should be smooth, responsive, and reliable.
+
+The 3D environment must not make the writing experience laggy.
+
+Prioritize:
+
+- Smooth rendering.
+- Fast notebook opening.
+- Responsive handwriting.
+- Accurate stylus input.
+- Efficient image loading.
+- Optimized 3D models.
+- Efficient textures.
+- Lazy loading where appropriate.
+- Reliable autosaving.
+- Low memory usage.
+- Proper cleanup of rendering resources.
+- Efficient page navigation.
+
+## Critical Architecture Requirement
+
+Keep the realistic 3D environment and the actual notebook writing surface separate.
+
+Use the 3D scene for physical objects and environmental presentation.
+
+Use a dedicated optimized interactive writing surface for actual page content.
+
+Do not perform unnecessarily expensive 3D rendering operations for every handwriting stroke or text edit.
+
+The 3D environment should feel premium, but the act of writing must remain immediate and effortless.
+
+Provide a fallback experience for lower-powered devices.
+
+If necessary, reduce environmental 3D effects while preserving the notebook's essential functionality.
+
+Performance and usability always take priority over decorative visual effects.
+
+---
+
+# PART 22 — INITIAL APPLICATION STATE AND REAL PRODUCT REQUIREMENTS
+
+This must be the actual final application, not a demonstration.
+
+Do not create fake accounts.
+
+Do not create a fictional user profile.
+
+Do not preconfigure random user preferences.
+
+Do not populate the application with fictional journal entries or pretend user content.
+
+The first-use experience should be clean and beautiful.
+
+Users should be able to sign in and create their own notebooks.
+
+The application may include a clearly identified sample notebook for optional onboarding, but it must not be confused with real user data and must be removable.
+
+Do not use fake functionality or placeholder interactions.
+
+Every visible button, menu, and interactive object must perform its advertised action.
+
+Do not leave:
+
+- Nonfunctional buttons.
+- Placeholder screens.
+- Fake loading states.
+- Unimplemented navigation.
+- Mock authentication.
+- Nonpersistent notebook content.
+- Broken image upload controls.
+
+Use realistic empty states for users who have not created notebooks yet.
+
+---
+
+# PART 23 — TESTING AND QUALITY ASSURANCE
+
+Test the complete application before considering it finished.
+
+### Notebook functionality
+
+- Create notebooks.
+- Rename notebooks.
+- Change covers.
+- Change binding styles.
+- Add pages.
+- Delete pages.
+- Navigate between pages.
+- Close and reopen notebooks.
+- Restore last opened page.
+
+### Writing functionality
+
+- Type text.
+- Change handwriting fonts.
+- Use multiple pen colors.
+- Select different pen types.
+- Draw freehand.
+- Use a stylus.
+- Erase strokes.
+- Undo and redo.
+
+### Photography
+
+- Upload images.
+- Drag images.
+- Resize images.
+- Rotate images.
+- Overlap images.
+- Change layering.
+- Save and restore positions.
+
+### Bookmark functionality
+
+- Create bookmarks.
+- Change ribbon colors.
+- Rename bookmarks.
+- Navigate through bookmarks.
+- Remove bookmarks.
+- Verify correct page positioning.
+
+### Organization
+
+- View active notebooks.
+- Arrange notebooks on the desk.
+- Archive notebooks.
+- Browse the bookshelf.
+- Restore archived notebooks.
+- Permanently delete notebooks.
+
+### Daily journal
+
+- Select a year.
+- Navigate the calendar.
+- Create date-based entries.
+- Reopen previous entries.
+- Verify dates and entries remain correctly associated.
+
+### Authentication and synchronization
+
+- Sign in with Google.
+- Sign out.
+- Reopen the application.
+- Access notebooks on another device.
+- Synchronize photographs and page layouts.
+- Test offline editing where supported.
+- Test recovery from failed saves.
+
+### Responsive testing
+
+Test on:
+
+- Desktop.
+- Laptop.
+- Tablet.
+- Mobile phone.
+
+Fix functional bugs, visual inconsistencies, and interaction problems before considering the application complete.
+
+---
+
+# PART 24 — COMPLETE USER JOURNEY
+
+The final application should support the following experience.
+
+## First Visit
+
+1. User opens Daybook.
+2. User sees a beautiful introduction.
+3. User signs in using Google.
+4. User enters their personal 3D study room.
+5. User sees the table and bookshelf.
+6. User selects the table.
+7. User creates their first notebook.
+8. User chooses its title, cover, and binding.
+9. The notebook appears on the writing table.
+
+## Regular Use
+
+1. User opens Daybook.
+2. The application immediately displays the writing table.
+3. User sees their active notebooks arranged naturally.
+4. User selects a notebook.
+5. The notebook lifts from the table.
+6. The book opens with a realistic animation.
+7. The application restores the last opened page.
+8. User selects a pen from the physical-looking pen box.
+9. User writes, draws, or types naturally.
+10. User switches pen colors whenever needed.
+11. User attaches photographs and positions them freely.
+12. User adds physical-looking bookmark ribbons.
+13. User can navigate directly to bookmarked pages.
+14. The application automatically saves everything.
+15. User closes the notebook.
+16. User returns to the writing table.
+
+## Archiving
+
+1. User archives a notebook.
+2. The notebook is removed from the active table.
+3. User navigates to the bookshelf.
+4. The notebook appears as a physical book among the other archived books.
+5. User can select, open, read, or restore it.
+6. All notebook content remains intact.
+
+---
+
+# PART 25 — DEVELOPMENT AND DELIVERY EXPECTATIONS
+
+Build the application in a structured and maintainable way.
+
+Do not attempt to create every complicated feature in one untested implementation.
+
+Use an incremental development process while keeping the complete product vision in mind.
+
+### Recommended implementation order
+
+**Phase 1 – Core foundation**
+- Project setup.
+- Google authentication.
+- Database architecture.
+- Persistent storage.
+- Account security.
+- Responsive application foundation.
+
+**Phase 2 – 3D environment**
+- Study room.
+- Writing table.
+- Bookshelf.
+- Notebook 3D models.
+- Notebook selection.
+- Opening and closing animations.
+
+**Phase 3 – Notebook engine**
+- Open-book layout.
+- Dynamic pages.
+- Page navigation.
+- Page-turning animations.
+- Notebook types.
+- Daily journal calendar.
+
+**Phase 4 – Writing engine**
+- Typed text.
+- Handwriting fonts.
+- Freehand drawing.
+- Stylus support.
+- Pen selection.
+- Erasers.
+- Undo and redo.
+
+**Phase 5 – Page composition**
+- Image uploads.
+- Freeform image positioning.
+- Rotation and resizing.
+- Layering.
+- Multiple content types.
+
+**Phase 6 – Organization**
+- Bookmarks.
+- Physical bookmark ribbons.
+- Bookmark index.
+- Last opened page memory.
+- Notebook arrangement.
+- Archiving and bookshelf restoration.
+
+**Phase 7 – Customization**
+- Notebook covers.
+- Binding styles.
+- Table customization.
+- Bookshelf customization.
+- Application settings.
+- Notebook-specific settings.
+
+**Phase 8 – Final quality**
+- Animations.
+- Sounds.
+- Responsive optimization.
+- Performance testing.
+- Security testing.
+- Cross-device synchronization testing.
+- Bug fixing.
+
+After each phase, verify that the previous functionality continues working.
+
+Do not sacrifice the core writing experience to complete decorative features.
+
+---
+
+# FINAL PRODUCT VISION
+
+Daybook should feel like a personal study room that belongs to the user.
+
+The table holds the notebooks they are currently using.
+
+The bookshelf holds the notebooks they have archived.
+
+Each notebook has its own physical appearance, binding, cover, pages, bookmarks, and personal history.
+
+Users should be able to pick up a notebook, open it, select a real-looking pen, write naturally, draw anywhere, attach photographs, switch colors, bookmark important pages, and close the book.
+
+The application should remember exactly where they stopped.
+
+The environment should feel realistic and beautiful, but the writing process should remain simple, immediate, and distraction-free.
+
+There should be no unnecessary complexity.
+
+There should be no generic productivity dashboard.
+
+There should be no fake functionality.
+
+There should be no visual compromises that make the notebook feel like an ordinary digital document.
+
+**Build a complete, responsive, persistent, production-ready digital journaling web application that recreates the experience of owning and using real physical notebooks.**
+
+The ultimate goal is simple:
+
+**Make users feel that they are sitting at their own desk, writing in their own personal notebook, surrounded by their collection of books and memories.**
+
+Build Daybook as a real product, not another note-taking website.

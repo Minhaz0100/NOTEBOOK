@@ -1,0 +1,239 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 1. Global Safety Net: Default-deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // 2. Hardened Global Helpers
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerified() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // 3. Entity Validation Blueprints (Anti-Update-Gap)
+    function isValidUserProfile(data) {
+      return data.keys().hasAll([
+        'uid', 'displayName', 'tableStyle', 'bookshelfStyle', 'theme',
+        'soundEnabled', 'soundVolume', 'animationMode', 'defaultPenColor',
+        'defaultPageColor', 'defaultFontFamily', 'hasSeenRoomIntro',
+        'createdAt', 'updatedAt'
+      ]) &&
+      data.keys().hasOnly([
+        'uid', 'displayName', 'tableStyle', 'bookshelfStyle', 'theme',
+        'soundEnabled', 'soundVolume', 'animationMode', 'defaultPenColor',
+        'defaultPageColor', 'defaultFontFamily', 'hasSeenRoomIntro',
+        'createdAt', 'updatedAt'
+      ]) &&
+      isValidId(data.uid) &&
+      data.uid == request.auth.uid &&
+      data.displayName is string && data.displayName.size() <= 120 &&
+      data.tableStyle is string && data.tableStyle.size() <= 32 && data.tableStyle in ['oak', 'walnut', 'modern'] &&
+      data.bookshelfStyle is string && data.bookshelfStyle.size() <= 32 && data.bookshelfStyle in ['classic', 'dark', 'minimal'] &&
+      data.theme is string && data.theme.size() <= 32 && data.theme in ['warm-ivory', 'soft-sage', 'evening-study'] &&
+      data.soundEnabled is bool &&
+      data.soundVolume is number && data.soundVolume >= 0 && data.soundVolume <= 1 &&
+      data.animationMode is string && data.animationMode.size() <= 32 && data.animationMode in ['full', 'reduced', 'none'] &&
+      data.defaultPenColor is string && data.defaultPenColor.size() <= 32 &&
+      data.defaultPageColor is string && data.defaultPageColor.size() <= 32 &&
+      data.defaultFontFamily is string && data.defaultFontFamily.size() <= 64 &&
+      data.hasSeenRoomIntro is bool &&
+      data.createdAt is timestamp &&
+      data.updatedAt is timestamp;
+    }
+
+    function isValidNotebook(data) {
+      return data.keys().hasAll([
+        'id', 'ownerId', 'title', 'description', 'notebookType', 'journalYear',
+        'coverColor', 'coverMaterial', 'coverAccent', 'bindingStyle',
+        'defaultPaperStyle', 'defaultPageColor', 'defaultFontFamily',
+        'pageCount', 'lastOpenedPage', 'lastViewedDate', 'archived',
+        'deskPositionX', 'deskPositionZ', 'deskRotationY', 'bookmarkIds',
+        'createdAt', 'updatedAt'
+      ]) &&
+      data.keys().hasOnly([
+        'id', 'ownerId', 'title', 'description', 'notebookType', 'journalYear',
+        'coverColor', 'coverMaterial', 'coverAccent', 'bindingStyle',
+        'defaultPaperStyle', 'defaultPageColor', 'defaultFontFamily',
+        'pageCount', 'lastOpenedPage', 'lastViewedDate', 'archived',
+        'deskPositionX', 'deskPositionZ', 'deskRotationY', 'bookmarkIds',
+        'createdAt', 'updatedAt'
+      ]) &&
+      isValidId(data.id) &&
+      isValidId(data.ownerId) &&
+      data.ownerId == request.auth.uid &&
+      data.title is string && data.title.size() >= 1 && data.title.size() <= 120 &&
+      data.description is string && data.description.size() <= 500 &&
+      data.notebookType is string && data.notebookType.size() <= 32 && data.notebookType in ['daily', 'free', 'notes'] &&
+      data.journalYear is number && data.journalYear >= 1970 && data.journalYear <= 2100 &&
+      data.coverColor is string && data.coverColor.size() <= 32 &&
+      data.coverMaterial is string && data.coverMaterial.size() <= 32 && data.coverMaterial in ['linen', 'leather', 'kraft', 'buckram'] &&
+      data.coverAccent is string && data.coverAccent.size() <= 32 && data.coverAccent in ['botanical', 'minimal-frame', 'celestial', 'monogram', 'none'] &&
+      data.bindingStyle is string && data.bindingStyle.size() <= 32 && data.bindingStyle in ['spiral', 'stitched', 'hardcover', 'softcover'] &&
+      data.defaultPaperStyle is string && data.defaultPaperStyle.size() <= 32 && data.defaultPaperStyle in ['ruled', 'dotted', 'blank'] &&
+      data.defaultPageColor is string && data.defaultPageColor.size() <= 32 &&
+      data.defaultFontFamily is string && data.defaultFontFamily.size() <= 64 &&
+      data.pageCount is number && data.pageCount >= 1 && data.pageCount <= 2000 &&
+      data.lastOpenedPage is number && data.lastOpenedPage >= 1 && data.lastOpenedPage <= 2000 &&
+      data.lastViewedDate is string && data.lastViewedDate.size() <= 32 &&
+      data.archived is bool &&
+      data.deskPositionX is number && data.deskPositionX >= -50 && data.deskPositionX <= 50 &&
+      data.deskPositionZ is number && data.deskPositionZ >= -50 && data.deskPositionZ <= 50 &&
+      data.deskRotationY is number && data.deskRotationY >= -10 && data.deskRotationY <= 10 &&
+      data.bookmarkIds is list && data.bookmarkIds.size() <= 30 &&
+      (data.bookmarkIds.size() == 0 || (data.bookmarkIds[0] is string && data.bookmarkIds[0].size() <= 128)) &&
+      data.createdAt is timestamp &&
+      data.updatedAt is timestamp;
+    }
+
+    function isValidNotebookPage(data) {
+      return data.keys().hasAll([
+        'id', 'notebookId', 'ownerId', 'pageNumber', 'entryDate', 'title',
+        'paperStyle', 'pageColor', 'bookmarkTitle', 'bookmarkColor',
+        'bookmarkStyle', 'textBlocks', 'strokes', 'photos', 'wordCount',
+        'createdAt', 'updatedAt'
+      ]) &&
+      data.keys().hasOnly([
+        'id', 'notebookId', 'ownerId', 'pageNumber', 'entryDate', 'title',
+        'paperStyle', 'pageColor', 'bookmarkTitle', 'bookmarkColor',
+        'bookmarkStyle', 'textBlocks', 'strokes', 'photos', 'wordCount',
+        'createdAt', 'updatedAt'
+      ]) &&
+      isValidId(data.id) &&
+      isValidId(data.notebookId) &&
+      isValidId(data.ownerId) &&
+      data.ownerId == request.auth.uid &&
+      data.pageNumber is number && data.pageNumber >= 1 && data.pageNumber <= 2000 &&
+      data.entryDate is string && data.entryDate.size() <= 32 &&
+      data.title is string && data.title.size() <= 200 &&
+      data.paperStyle is string && data.paperStyle.size() <= 32 && data.paperStyle in ['ruled', 'dotted', 'blank'] &&
+      data.pageColor is string && data.pageColor.size() <= 32 &&
+      data.bookmarkTitle is string && data.bookmarkTitle.size() <= 120 &&
+      data.bookmarkColor is string && data.bookmarkColor.size() <= 32 &&
+      data.bookmarkStyle is string && data.bookmarkStyle.size() <= 32 && data.bookmarkStyle in ['satin', 'linen', 'velvet', 'none'] &&
+      data.textBlocks is list && data.textBlocks.size() <= 100 &&
+      (data.textBlocks.size() == 0 || data.textBlocks[0] is map) &&
+      data.strokes is list && data.strokes.size() <= 300 &&
+      (data.strokes.size() == 0 || data.strokes[0] is map) &&
+      data.photos is list && data.photos.size() <= 30 &&
+      (data.photos.size() == 0 || data.photos[0] is map) &&
+      data.wordCount is number && data.wordCount >= 0 && data.wordCount <= 500000 &&
+      data.createdAt is timestamp &&
+      data.updatedAt is timestamp;
+    }
+
+    // 4. Collection Match Blocks
+    match /users/{userId} {
+      allow get: if isVerified() && isValidId(userId) && request.auth.uid == userId;
+      allow list: if false;
+      allow create: if isVerified() &&
+        isValidId(userId) &&
+        request.auth.uid == userId &&
+        isValidUserProfile(incoming()) &&
+        incoming().uid == userId &&
+        incoming().createdAt == request.time &&
+        incoming().updatedAt == request.time;
+      allow update: if isVerified() &&
+        isValidId(userId) &&
+        request.auth.uid == userId &&
+        isValidUserProfile(incoming()) &&
+        existing().uid == request.auth.uid &&
+        incoming().uid == existing().uid &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time &&
+        incoming().diff(existing()).affectedKeys().hasOnly([
+          'displayName', 'tableStyle', 'bookshelfStyle', 'theme',
+          'soundEnabled', 'soundVolume', 'animationMode', 'defaultPenColor',
+          'defaultPageColor', 'defaultFontFamily', 'hasSeenRoomIntro', 'updatedAt'
+        ]);
+      allow delete: if false;
+    }
+
+    match /notebooks/{notebookId} {
+      allow get: if isVerified() && isValidId(notebookId) && existing().ownerId == request.auth.uid;
+      allow list: if isVerified() && existing().ownerId == request.auth.uid;
+      allow create: if isVerified() &&
+        isValidId(notebookId) &&
+        isValidNotebook(incoming()) &&
+        incoming().id == notebookId &&
+        incoming().createdAt == request.time &&
+        incoming().updatedAt == request.time;
+      allow update: if isVerified() &&
+        isValidId(notebookId) &&
+        isValidNotebook(incoming()) &&
+        existing().ownerId == request.auth.uid &&
+        incoming().id == existing().id &&
+        incoming().ownerId == existing().ownerId &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().updatedAt == request.time &&
+        incoming().diff(existing()).affectedKeys().hasOnly([
+          'title', 'description', 'notebookType', 'journalYear',
+          'coverColor', 'coverMaterial', 'coverAccent', 'bindingStyle',
+          'defaultPaperStyle', 'defaultPageColor', 'defaultFontFamily',
+          'pageCount', 'lastOpenedPage', 'lastViewedDate', 'archived',
+          'deskPositionX', 'deskPositionZ', 'deskRotationY', 'bookmarkIds',
+          'updatedAt'
+        ]);
+      allow delete: if isVerified() && isValidId(notebookId) && existing().ownerId == request.auth.uid;
+
+      // Subcollection: Pages (Master Gate enforced on get/create/update/delete, relational check on list)
+      match /pages/{pageId} {
+        allow get: if isVerified() &&
+          isValidId(notebookId) &&
+          isValidId(pageId) &&
+          existing().ownerId == request.auth.uid &&
+          get(/databases/$(database)/documents/notebooks/$(notebookId)).data.ownerId == request.auth.uid;
+        allow list: if isVerified() &&
+          existing().ownerId == request.auth.uid &&
+          existing().notebookId == notebookId;
+        allow create: if isVerified() &&
+          isValidId(notebookId) &&
+          isValidId(pageId) &&
+          isValidNotebookPage(incoming()) &&
+          incoming().id == pageId &&
+          incoming().notebookId == notebookId &&
+          incoming().createdAt == request.time &&
+          incoming().updatedAt == request.time &&
+          exists(/databases/$(database)/documents/notebooks/$(notebookId)) &&
+          get(/databases/$(database)/documents/notebooks/$(notebookId)).data.ownerId == request.auth.uid;
+        allow update: if isVerified() &&
+          isValidId(notebookId) &&
+          isValidId(pageId) &&
+          isValidNotebookPage(incoming()) &&
+          existing().ownerId == request.auth.uid &&
+          incoming().id == existing().id &&
+          incoming().notebookId == existing().notebookId &&
+          incoming().ownerId == existing().ownerId &&
+          incoming().createdAt == existing().createdAt &&
+          incoming().updatedAt == request.time &&
+          incoming().diff(existing()).affectedKeys().hasOnly([
+            'pageNumber', 'entryDate', 'title', 'paperStyle', 'pageColor',
+            'bookmarkTitle', 'bookmarkColor', 'bookmarkStyle',
+            'textBlocks', 'strokes', 'photos', 'wordCount', 'updatedAt'
+          ]) &&
+          get(/databases/$(database)/documents/notebooks/$(notebookId)).data.ownerId == request.auth.uid;
+        allow delete: if isVerified() &&
+          isValidId(notebookId) &&
+          isValidId(pageId) &&
+          existing().ownerId == request.auth.uid &&
+          get(/databases/$(database)/documents/notebooks/$(notebookId)).data.ownerId == request.auth.uid;
+      }
+    }
+  }
+}
